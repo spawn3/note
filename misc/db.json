@@ -1,0 +1,6 @@
+
+db.getCollectionNames().forEach(function(name) {
+    print(name);
+    collection = db.getCollection(name);
+    printjson(collection.findOne());
+});
