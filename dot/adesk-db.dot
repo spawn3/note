@@ -1,0 +1,44 @@
+digraph adesk_db {
+    rankdir=LR;
+    size = "16,12"
+    node [shape=ellipse]; log; taglog; tag_search_log;
+    node [shape=box,style=filled,color=lightblue]; user; image; category; dir; tag; cover;
+    node [shape=diamond,style=filled,color=lightgrey]; img2tag; private; followdir;
+
+    user -> image[label="wallpaper"];
+
+    image -> user [label="uid"];
+    image -> category [label="cid"];
+    image -> dir [label="dirid"];
+
+    category -> cover [label="cover"];
+
+    cover -> category[label="cid"];
+    cover -> image[label="imgid"];
+
+    dir -> user[label="uid"];
+    dir -> category [label="cid"];
+
+    tag -> user [label="uid"];
+
+    img2tag -> image[label="imgid"];
+    img2tag -> user[label="uids"];
+    img2tag -> tag[label="name"];
+
+    private -> user[label="uid"];
+    private -> image[label="imgid"];
+
+    followdir -> user[label="uid"];
+    followdir -> dir[label="dirid"];
+
+    log -> user[label="uid"];
+    log -> image[label="imgid"];
+
+    tag_search_log -> user[label="uid"];
+    tag_search_log -> tag[label="tagname"];
+
+    taglog -> user[label="uid"];
+    taglog -> tag[label="name"];
+
+
+}

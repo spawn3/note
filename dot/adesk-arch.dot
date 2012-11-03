@@ -1,0 +1,28 @@
+digraph adesk_arch {
+    // rankdir=LR;
+    size = "16,12";
+    node [shape=Mdiamond]; client;
+    node [shape=ellipse,style=filled,color=lightblue]; app; rest; fileServer;
+    node [shape=ellipse,style=filled,color=red]; CDN; cache;
+    node [shape=box3d,style=none,color=black]; db;
+    node [shape=box];
+
+    client -> nginx1;
+    client -> nginx2;
+    client -> nginx3;
+
+    client -> CDN -> nginx3[style=dotted, color=red];
+
+    nginx1 -> app[label="+"];
+    nginx2 -> rest[label="+"];
+    nginx3 -> fileServer[label="+"];
+
+    app -> dal;
+    rest -> dal;
+    fileServer -> dal;
+
+    dal -> db;
+
+    dal -> cache[style=dotted, color=red];
+    cache -> db[style=dotted, color=red];
+}

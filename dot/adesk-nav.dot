@@ -1,0 +1,64 @@
+digraph adesk_arch {
+    // rankdir=LR;
+    // size = "8,8";
+    // node [shape=Mdiamond]; client;
+    // node [shape=ellipse,style=filled,color=lightblue]; app; rest; fileServer;
+    // node [shape=ellipse,style=filled,color=red]; CDN; cache;
+    // node [shape=box3d,style=none,color=black]; db;
+    // node [shape=box];
+
+    node[shape=circle,style=filled,color=lightblue];
+
+    "/" -> home;
+    "/" -> search;
+    "/" -> explorer;
+    "/" -> personal;
+
+    home -> categories;
+    home -> livecategories;
+
+    personal -> myedit;
+    personal -> myfavorite;
+    personal -> myattention;
+    personal -> myupload;
+    personal -> myalbum;
+
+    categories  -> albums;
+    explorer    -> albums;
+    search      -> albums;
+    myattention -> albums;
+    myalbum     -> albums;
+
+    categories -> images[label="cate"];
+    albums     -> images[label="album"];
+    search     -> images[label="search"];
+    explorer   -> images[label="newest"];
+    explorer   -> images[label="hot"];
+    myupload   -> images[label="owner"];
+    myfavorite -> images[label="favor"];
+    imgdetail  -> images[label="tag", color=red];
+
+    images -> imgdetail[label="cate"];
+    images -> imgdetail[label="album"];
+    images -> imgdetail[label="tag"];
+    images -> imgdetail[label="search"];
+    images -> imgdetail[label="newest"];
+    images -> imgdetail[label="hot"];
+    images -> imgdetail[label="owner"];
+    images -> imgdetail[label="favor"];
+
+    imgdetail -> imgdetail[label="p|n", color=red];
+
+    livecategories -> lives[label="cate"];
+    myfavorite     -> lives;
+    search         -> lives;
+    explorer       -> lives;
+
+    lives -> livedetail[label="cate"];
+    lives -> livedetail[label="favor"];
+    lives -> livedetail[label="search"];
+    lives -> livedetail[label="hot"];
+
+    livedetail -> livedetail[label="p|n",color=red];
+
+}
