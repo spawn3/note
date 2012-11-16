@@ -1,0 +1,21 @@
+digraph adesk_server {
+    rankdir=LR;
+    size = "16,12"
+
+    // node [shape=ellipse]; log; taglog; tag_search_log;
+    // node [shape=box,style=filled,color=lightblue]; user; image; category; dir; tag; cover;
+    // node [shape=diamond,style=filled,color=lightgrey]; img2tag; private; followdir;
+
+    serverh -> serverd;
+    serverh -> servere;
+    serverh -> serverf;
+    serverh -> serveri;
+    serverh -> serverj;
+    serverh -> dscnca;
+
+    serverh -> serverk;
+    serverh -> serverl;
+    serverh -> serverm;
+    serverh -> servern;
+    serverh -> servero;
+}
