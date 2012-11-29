@@ -529,6 +529,22 @@ end{bashcode}
 hostimage_cache
 \end_layout
 
+\begin_layout Chapter
+API
+\end_layout
+
+\begin_layout Section
+API认证方式
+\end_layout
+
+\begin_layout Itemize
+OAuth
+\end_layout
+
+\begin_layout Itemize
+OpenID
+\end_layout
+
 \begin_layout Part
 实现
 \end_layout
