@@ -375,5 +375,126 @@ target "https://github.com/androidesk/god-server.git"
 )
 \end_layout
 
+\begin_layout Chapter
+官网
+\end_layout
+
+\begin_layout Section
+消息队列RabbitMQ
+\end_layout
+
+\begin_layout Chapter
+Search Service (ElasticSearch)
+\end_layout
+
+\begin_layout Section
+安装
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{bashcode}
+\end_layout
+
+\begin_layout Plain Layout
+
+apt-get install openjdk-6-jre-headless
+\end_layout
+
+\begin_layout Plain Layout
+
+pip install pyes
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{bashcode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+将启动脚本保存到/etc/init.d/elasticsearch中。 
+\end_layout
+
+\begin_layout Standard
+修改当中的ES_HOME值指定在elasticsearch的目录。 
+\end_layout
+
+\begin_layout Standard
+修改配置文件$ES_HOME/config/elasticsearch.yml。
+\end_layout
+
+\begin_layout Standard
+然后启动：sudo /etc/init.d/elasticsearch start。
+\end_layout
+
+\begin_layout Standard
+配置文件目录：/etc/elasticsearch/ 
+\end_layout
+
+\begin_layout Standard
+数据目录：/data/elasticsearch/data/ log
+\end_layout
+
+\begin_layout Standard
+目录：/var/log/elasticsearch/ 
+\end_layout
+
+\begin_layout Section
+创建索引
+\end_layout
+
+\begin_layout Section
+插件 
+\end_layout
+
+\begin_layout Itemize
+analysis-ik:ik中文分词 
+\end_layout
+
+\begin_layout Itemize
+analysis-mmseg：mmseg分词 
+\end_layout
+
+\begin_layout Itemize
+analysis-ansj：ansj分词 
+\end_layout
+
+\begin_layout Itemize
+analysis-pinyin：拼音分词 
+\end_layout
+
+\begin_layout Itemize
+head：es管理插件（host:9200/_plugin/head/）
+\end_layout
+
+\begin_layout Chapter
+Hadoop集群
+\end_layout
+
+\begin_layout Standard
+serverc
+\end_layout
+
+\begin_layout Standard
+dscnca
+\end_layout
+
+\begin_layout Standard
+dscncb
+\end_layout
+
 \end_body
 \end_document

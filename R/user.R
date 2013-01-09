@@ -1,13 +1,13 @@
 library(rmongodb)
-m = mongo.create('serverb')
+m = mongo.create('serverk')
 ms = 'androidesk.user'
 now = ISOdate(2011,1,1,0,0,0)
 
-users = 1:300
+users = integer()
 
-for (i in 1:730) { 
-  start = now + as.difftime(i, units='days');
-  end   = now + as.difftime(i+1, units='days');
+for (i in 1:24) { 
+  start = now + as.difftime(i*30, units='days');
+  end   = now + as.difftime(i*30+30, units='days');
   query = list('atime'=list('$gte'=start, '$lte'=end));
   count = mongo.count(m,ns, query);
   users[i] = count;
@@ -15,4 +15,4 @@ for (i in 1:730) {
 }
 
 print(users);
-plot(users, type='l', col='green')
+plot(users, type='b', col='red')

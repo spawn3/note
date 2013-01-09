@@ -1,0 +1,23 @@
+digraph adesk_db {
+    rankdir=LR;
+    size = "16,12"
+    // node [shape=ellipse]; log; taglog; tag_search_log;
+    // node [shape=box,style=filled,color=lightblue]; user; image; category; dir; tag; cover;
+    // node [shape=diamond,style=filled,color=lightgrey]; img2tag; private; followdir;
+    node [shape=Mdiamond]; serverf;
+    node [shape=ellipse, style=filled, color=lightgrey] servere; serverg; serveri; dscnca; dscncb;
+    node [shape=box, color=lightblue]
+
+    serverf -> servere[label="8100-8115", color=red];
+    serverf -> serverg[label="8100-8115", color=red];
+    serverf -> serveri[label="8100-8115", color=red];
+    serverf -> dscnca[label="8100-8115", color=red];
+    serverf -> dscncb[label="8100-8115", color=red];
+
+    servere -> serverd[label="db"]
+    servere -> servere[label="db"]
+    servere -> serverf[label="db"]
+    servere -> serveri[label="db"]
+    servere -> serverj[label="db"]
+    servere -> dscnca[label="db"]
+}

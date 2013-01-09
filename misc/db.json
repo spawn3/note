@@ -1,7 +1,8 @@
 
 db.getCollectionNames().forEach(function(name) {
     collection = db.getCollection(name);
-    print(name);
-    print(collection.count());
-    printjson(collection.findOne());
+    print(name + '        ' + collection.totalIndexSize());
+    // print(collection.totalIndexSize());
+    // print(collection.count());
+    // printjson(collection.findOne());
 });
