@@ -1,0 +1,19 @@
+digraph adesk_arch {
+    rankdir=LR;
+    size = "16,8";
+    // node [shape=Mdiamond]; client;
+    // node [shape=ellipse,style=filled,color=lightblue]; app; rest; fileServer;
+    // node [shape=ellipse,style=filled,color=red]; CDN; cache;
+    // node [shape=box3d,style=none,color=black]; db;
+    // node [shape=box];
+
+    // node [shape=box,style=filled,color=lightblue]; Album;
+    node [shape=circle,style=filled,color=lightblue];
+
+    Mongodb -> "+";
+    Hadoop  -> "+";
+
+    "+"    -> UserDB[label="ETL"];
+    UserDB -> Result[label="analyze"];
+
+}

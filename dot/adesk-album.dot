@@ -1,0 +1,42 @@
+digraph adesk_arch {
+    rankdir=LR;
+    size = "16,8";
+    // node [shape=Mdiamond]; client;
+    // node [shape=ellipse,style=filled,color=lightblue]; app; rest; fileServer;
+    // node [shape=ellipse,style=filled,color=red]; CDN; cache;
+    // node [shape=box3d,style=none,color=black]; db;
+    // node [shape=box];
+
+    node [shape=Mdiamond]; User;
+    node [shape=box,style=filled,color=lightblue]; Album;
+    node [shape=circle,style=filled,color=lightblue];
+
+    User -> Image[label="set/down(log:uid->imgid)"];
+    User -> Image[label="share", color=red];
+    User -> Image[label="like(private:uid->imgid)"];
+    User -> Tag[label="add(tag:uid->name)"];
+    User -> Tag[label="up", color=red];
+    User -> Album[label="like(followdir:uid->dirid)"];
+    User -> Category[label="?like", color=red];
+    User -> Keyword[label="search", color=red];
+
+    Tag -> Image[label="#(img2tag:name->imgid)"];
+
+    Image -> Album[label="#(image:imgid->dirid)"];
+    Image -> Category[label="?", color=red];
+
+    Keyword -> Category[label="?"];
+    Keyword -> Album[label="?"];
+
+    Category -> Category[label="other", color=red];
+    Category -> Album[label="hot"];
+
+    Album -> Album[label="?"];
+
+    Album -> TOPN[label="filter"];
+
+    // Performance -> Availability;
+    // Availability -> Scalability;
+    // Scalability -> Security;
+    // Security -> Performance;
+}

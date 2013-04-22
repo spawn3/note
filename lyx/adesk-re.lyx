@@ -1,0 +1,778 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass scrbook
+\begin_preamble
+% DO NOT ALTER THIS PREAMBLE!!!
+%
+% This preamble is designed to ensure that this document prints
+% out as advertised. If you mess with this preamble,
+% parts of this document may not print out as expected.  If you
+% have problems LaTeXing this file, please contact 
+% the documentation team
+% email: lyx-docs@lists.lyx.org
+
+\usepackage{ifpdf} % part of the hyperref bundle
+\ifpdf % if pdflatex is used
+
+ % set fonts for nicer pdf view
+ \IfFileExists{lmodern.sty}
+  {\usepackage{lmodern}}{}
+
+\fi % end if pdflatex is used
+
+% the pages of the TOC is numbered roman
+% and a pdf-bookmark for the TOC is added
+\let\myTOC\tableofcontents
+\renewcommand\tableofcontents{%
+  \frontmatter
+  \pdfbookmark[1]{\contentsname}{}
+  \myTOC
+  \mainmatter }
+
+% redefine the \LyX macro for PDF bookmarks
+\def\LyX{\texorpdfstring{%
+  L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
+  {LyX}}
+
+% used for multi-column text
+\usepackage{multicol}
+
+\usepackage{indentfirst}
+\usepackage[body={17cm,25cm},centering,dvipdfm]{geometry}
+
+\XeTeXlinebreaklocale="zh"
+\XeTeXlinebreakskip=0pt plus 1pt minus .1pt
+
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\usepackage{minted}
+% \usemintedstyle{trac}
+
+\definecolor{bg}{rgb}{0.95, 0.95, 0.95}
+\newminted{json}{frame=single,framesep=3mm,numbersep=5pt,bgcolor=bg}
+\newminted{bash}{frame=single,framesep=3mm,numbersep=5pt,bgcolor=bg}
+\end_preamble
+\options a4paper,10pt,openany,twoside
+\use_default_options true
+\begin_modules
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\begin_local_layout
+Format 35
+InsetLayout Flex:MenuItem
+LyxType               charstyle
+LabelString           menu
+LatexType             command
+LatexName             menuitem
+Font
+Family              Sans
+EndFont
+Preamble
+\newcommand*{\menuitem}[1]{{\sffamily #1}}
+EndPreamble
+End
+# In case we need to do with sans...
+#InsetLayout CharStyle:Code
+#Font
+#Family              Sans
+#EndFont
+#Preamble
+#\renewcommand{\code}[1]{{\sffamily #1}}
+#EndPreamble
+#End
+\end_local_layout
+\language chinese-simplified
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman YaHei Consolas Hybrid
+\font_sans YaHei Consolas Hybrid
+\font_typewriter YaHei Consolas Hybrid
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\font_cjk gbsn
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref true
+\pdf_title "LyX Configuration Manual"
+\pdf_author "LyX Team"
+\pdf_subject "LyX-documentation Customization"
+\pdf_keywords "LyX, documentation, customization"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered true
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle false
+\pdf_quoted_options "dvipdfm,colorlinks,pdfpagelayout=OneColumn, pdfnewwindow=true, pdfstartview=FitH, plainpages=false,CJKbookmarks=true,unicode=false"
+\papersize a4paper
+\use_geometry false
+\use_amsmath 0
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\branch OutDated
+\selected 0
+\filename_suffix 0
+\color #f5fae7
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 2
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict true
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Adesk首页改版之专辑推荐
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+数据
+\end_layout
+
+\begin_layout Section
+用户
+\end_layout
+
+\begin_layout Standard
+专辑推荐是针对所有用户的功能，包括匿名用户和注册用户。
+\color red
+匿名用户用设备号来标识其唯一性
+\color inherit
+。可区分以下几种情况：
+\end_layout
+
+\begin_layout Itemize
+一个设备对应一个匿名用户
+\end_layout
+
+\begin_layout Itemize
+一个设备对应一个或多个注册用户
+\end_layout
+
+\begin_layout Itemize
+多个设备对应一个注册用户
+\end_layout
+
+\begin_layout Standard
+以下诸种情况需要特别处理，
+\end_layout
+
+\begin_layout Itemize
+一台设备上匿名用户转为注册用户的情况（设备与注册用户建立绑定关系）
+\end_layout
+
+\begin_layout Itemize
+注册用户登录到一台新设备的情况（对注册用户，行为数据会在用户级别进行聚合）
+\end_layout
+
+\begin_layout Itemize
+另一注册用户登录到
+\color blue
+已有注册用户绑定的设备
+\color inherit
+的情况（现在该设备绑定于新的注册用户，原有绑定关系失效）
+\end_layout
+
+\begin_layout Standard
+只考虑一台设备属于一个用户的情况。
+\color red
+对匿名用户来说，用户行为即该设备所产生的行为；对注册用户来说，与该用户绑定的所有设备的行为，都归为该用户的行为
+\color inherit
+。
+\end_layout
+
+\begin_layout Subsection
+
+\color red
+用户行为数据的保存
+\end_layout
+
+\begin_layout Standard
+如为匿名用户，以设备ID为主键保存；如为注册用户，以设备ID为主键保存，并写入UID信息。
+\end_layout
+
+\begin_layout Subsection
+设备与注册用户的绑定关系的建立和解除
+\end_layout
+
+\begin_layout Standard
+用户注册时，登录时会建立设备与用户的绑定关系。如果该设备已与另外的注册用户绑定，则会被覆盖掉，以新的绑定关系为准，即
+\color red
+一个设备最多能绑定到一个注册用户上
+\color inherit
+。
+\end_layout
+
+\begin_layout Subsection
+用户行为数据的时效性
+\end_layout
+
+\begin_layout Standard
+随时间的流失，用户行为数据会衰变
+\color red
+（衰变模型？）
+\color inherit
+。
+\end_layout
+
+\begin_layout Section
+用户行为数据
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/gj/work/git/note/dot/adesk-album.dot.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+分类数据
+\end_layout
+
+\begin_layout Standard
+用户可定制喜欢的分类及其顺序，系统会优先选择用户喜欢的分类里面的热门专辑，
+\color red
+并按指定的顺序显示结果
+\color inherit
+。此非强制性要求，根据其它条件选定的专辑，可能并不在用户选择的分类里，也会出现在结果里。
+\end_layout
+
+\begin_layout Standard
+需要进一步定义什么是分类的热门专辑。
+\end_layout
+
+\begin_layout Standard
+
+\color red
+另外，每个分类有相似分类，可以据此优先选择相似分类里的专辑。
+\end_layout
+
+\begin_layout Subsection
+专辑数据
+\end_layout
+
+\begin_layout Standard
+每个用户有自己关注（喜欢）的专辑，系统会优先选择这些专辑，
+\color blue
+这些专辑应具有比较高的权重
+\color inherit
+。
+\end_layout
+
+\begin_layout Subsection
+图片数据
+\end_layout
+
+\begin_layout Standard
+用户可通过以下几种行为与图片建立关系：
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+共享（应具有较高权重，尚没有采集相关行为数据）
+\end_layout
+
+\begin_layout Itemize
+设置
+\end_layout
+
+\begin_layout Itemize
+下载
+\end_layout
+
+\begin_layout Itemize
+喜欢
+\end_layout
+
+\begin_layout Itemize
+标签行为（添加标签和
+\color red
+顶标签
+\color inherit
+）
+\end_layout
+
+\begin_layout Standard
+用户与图片发生关系，通过这些图片所属专辑，进而可以推导用户与专辑之间关系的强弱。
+\end_layout
+
+\begin_layout Standard
+
+\color red
+通过对不同行为分配不同的权重
+\color inherit
+，可进一步表示用户和图片关系的强弱，进而表示用户和专辑之间关系的强弱。
+\end_layout
+
+\begin_layout Subsection
+搜索关键字
+\end_layout
+
+\begin_layout Standard
+通过分析搜索日志，得到用户搜索过的关键字列表。
+\end_layout
+
+\begin_layout Standard
+通过把关键字映射到不同的分类（分类器）上，可进行用户行为偏好的推导。
+\end_layout
+
+\begin_layout Standard
+
+\color red
+也可直接把关键字映射到不同的专辑上（？）。
+\end_layout
+
+\begin_layout Section
+数据的获得
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/gj/work/git/note/dot/adesk-data.dot.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+通过mongodb获取
+\end_layout
+
+\begin_layout Itemize
+通过hadoop里的用户行为日志获取
+\end_layout
+
+\begin_layout Standard
+给定一设备ID，需要获取的数据有（需要有时间信息：最近或全部）：
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+我选择的分类（我访问每个分类的行为数据）
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+我喜欢的专辑列表
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+我分享过的图片
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+我设置过的图片
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+我下载过的图片
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+我喜欢过的图片
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+我的标签
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+我搜索过的关键字
+\end_layout
+
+\begin_layout Standard
+可以根据设备和注册用户的绑定关系，对注册用户的行为数据进行聚合：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/gj/work/git/note/dot/adesk-useraggr.dot.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+数据的存储
+\end_layout
+
+\begin_layout Standard
+提取后的用户行为数据可存入mongodb，并
+\color blue
+根据user进行分区
+\color inherit
+。
+\end_layout
+
+\begin_layout Section
+分析结果的存储
+\end_layout
+
+\begin_layout Standard
+分析结果存入mongodb里，
+\color blue
+每日一表
+\color inherit
+。
+\end_layout
+
+\begin_layout Chapter
+算法
+\end_layout
+
+\begin_layout Section
+确定计算哪些用户的个性化数据
+\end_layout
+
+\begin_layout Standard
+为了避免过多的计算量，可以只计算最近N天内活跃的用户数据。对不活跃的用户，采用默认值。
+\end_layout
+
+\begin_layout Section
+新专辑的定义
+\end_layout
+
+\begin_layout Standard
+在某统计周期内（天）有图片插入的专辑。
+\end_layout
+
+\begin_layout Section
+专辑向量模型
+\end_layout
+
+\begin_layout Standard
+专辑的特征可归纳为三个部分：
+\end_layout
+
+\begin_layout Itemize
+所在分类（0..1）
+\end_layout
+
+\begin_layout Itemize
+专辑ID（1）
+\end_layout
+
+\begin_layout Itemize
+所包含的图片（1..*）
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{bashcode}
+\end_layout
+
+\begin_layout Plain Layout
+
+U := <categoryID, albumID, imageIDs>
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{bashcode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+用户向量模型
+\end_layout
+
+\begin_layout Standard
+用户的特征也相应的分为三个部分：
+\end_layout
+
+\begin_layout Itemize
+喜欢的分类及其顺序（0..*）
+\end_layout
+
+\begin_layout Itemize
+喜欢的专辑列表(0..*）
+\end_layout
+
+\begin_layout Itemize
+发生过关系的图片（0..*）
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{bashcode}
+\end_layout
+
+\begin_layout Plain Layout
+
+I := <categoryIDs, albumIDs, imageIDs>
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{bashcode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+用户和专辑相关性的度量
+\end_layout
+
+\begin_layout Standard
+用户和专辑的相关性转成计算用户和专辑的相似度问题，相似度计算采用
+\begin_inset CommandInset href
+LatexCommand href
+name "余弦距离"
+target "http://zh.wikipedia.org/wiki/%E6%96%87%E6%9C%AC%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2#.E5.90.91.E9.87.8F.E7.A9.BA.E9.97.B4.E6.A8.A1.E5.9E.8B"
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Section
+不同特征权重的确定
+\end_layout
+
+\begin_layout Standard
+目前先采用
+\color blue
+静态分配
+\color inherit
+的方法，后续可以考虑通过学习机制进行演化。
+\end_layout
+
+\begin_layout Section
+算法描述
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{bashcode}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// 计算所有用户的推荐专辑列表
+\end_layout
+
+\begin_layout Plain Layout
+
+def cal(users, newAlbums):
+\end_layout
+
+\begin_layout Plain Layout
+
+    for user in users:        
+\end_layout
+
+\begin_layout Plain Layout
+
+       distanceList = calDistanceList(user, newAlbums)
+\end_layout
+
+\begin_layout Plain Layout
+
+       topn(distanceList, functionAlbums, opAlbums, n=20)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// 某用户与新专辑的相关度计算
+\end_layout
+
+\begin_layout Plain Layout
+
+def calDistanceList(user, newAlbums):
+\end_layout
+
+\begin_layout Plain Layout
+
+    for album in newAlbums:
+\end_layout
+
+\begin_layout Plain Layout
+
+        distance = calDistance(user, album)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// 某用户与某专辑的相关度计算：余弦距离
+\end_layout
+
+\begin_layout Plain Layout
+
+def calDistance(user, album):
+\end_layout
+
+\begin_layout Plain Layout
+
+    ...
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+// 选择出n个专辑，包括功能性专辑和运营专辑
+\end_layout
+
+\begin_layout Plain Layout
+
+def topn(distanceList, functionAlbums, opAlbums, n=20):
+\end_layout
+
+\begin_layout Plain Layout
+
+     ...
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{bashcode}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+算法评价
+\end_layout
+
+\begin_layout Itemize
+准(喜欢过的被推荐）
+\end_layout
+
+\begin_layout Itemize
+
+\color red
+新(被推荐的是新欢）
+\end_layout
+
+\begin_layout Section
+下一步的问题
+\end_layout
+
+\begin_layout Standard
+根据用户反馈，引入学习机制，改进推荐效果。
+\end_layout
+
+\end_body
+\end_document
